@@ -123,6 +123,22 @@ public class EventInstanceManager {
         character.setBossPoints(points + bossPoints);
     }
 
+    public void saveDojoRecord(MapleCharacter chr, int floor) {
+        try {
+            Connection con = DatabaseConnection.getConnection();
+            PreparedStatement ps = con.prepareStatement(
+                "INSERT INTO dojorecord (characterid, floor, time) VALUES (?, ?, ?) " +
+                "ON DUPLICATE KEY UPDATE floor = IF(VALUES(floor) > floor, VALUES(floor), floor), time = IF(VALUES(floor) > floor, VALUES(time), time)");
+            ps.setInt(1, chr.getId());
+            ps.setInt(2, floor);
+            ps.setLong(3, System.currentTimeMillis());
+            ps.executeUpdate();
+            ps.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void startEventTimer(long time) {
         timeStarted = System.currentTimeMillis();
         eventTime = time;
