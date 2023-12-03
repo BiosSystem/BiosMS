@@ -34,18 +34,23 @@ import tools.data.input.SeekableLittleEndianAccessor;
 
 public class MonsterCarnivalHandler extends AbstractMaplePacketHandler {
 
+    private boolean isCPQ2Map(int mapId) {
+        return mapId >= 980031000 && mapId <= 980031999;
+    }
+
     @Override
     public void handlePacket(SeekableLittleEndianAccessor slea, MapleClient c) {
         int tab = slea.readByte();
         int num = slea.readByte();
         int neededCP = getCPNeeded(tab, num);
+        boolean cpq2 = isCPQ2Map(c.getPlayer().getMapId());
         if (c.getPlayer().getCP() < neededCP) {
             c.getSession().write(MaplePacketCreator.serverNotice(5, "You do not have enough CP to use this."));
             c.getSession().write(MaplePacketCreator.enableActions());
             return;
         }
         if (tab == 0) { //only spawning for now..
-            MapleMonster mob = MapleLifeFactory.getMonster(getMonsterIdByNum(num));
+            MapleMonster mob = MapleLifeFactory.getMonster(getMonsterIdByNum(num, cpq2));
             Point spawnPos = c.getPlayer().getMap().getRandomSP(c.getPlayer().getTeam());
             if (spawnPos == null) {
                 c.getSession().write(MaplePacketCreator.serverNotice(5, "The monster cannot be summoned, as all spawn points are taken."));
@@ -193,56 +198,40 @@ public class MonsterCarnivalHandler extends AbstractMaplePacketHandler {
         c.getPlayer().getMap().broadcastMessage(MaplePacketCreator.playerSummoned(c.getPlayer().getName(), tab, num));
     }
 
-    public int getMonsterIdByNum(int num) {
-        /*
-	1 - Brown Teddy - 3000005
-        2 - Bloctopus - 3230302
-        3 - Ratz - 3110102
-        4 - Chronos - 3230306
-        5 - Toy Trojan - 3230305
-        6 - Tick-Tock - 4230113
-        7 - Robo - 4230111
-        8 - King Bloctopus - 3230103
-        9 - Master Chronos - 4230115
-        10 - Rombot - 4130103
-         */
+    public int getMonsterIdByNum(int num, boolean cpq2) {
         int mid = 0;
-        num++; //whatever, don't wanna change all the cases XD
+        num++;
 
-        switch (num) {
-            case 1: //brown teddy
-                mid = 9300127;
-                break;
-            case 2: //bloctopus
-                mid = 9300128;
-                break;
-            case 3:
-                mid = 9300129;
-                break;
-            case 4:
-                mid = 9300130;
-                break;
-            case 5:
-                mid = 9300131;
-                break;
-            case 6:
-                mid = 9300132;
-                break;
-            case 7:
-                mid = 9300133;
-                break;
-            case 8:
-                mid = 9300134;
-                break;
-            case 9:
-                mid = 9300135;
-                break;
-            case 10:
-                mid = 9300136;
-                break;
-            default:
-                mid = 210100; //LOL slime.. w/e, shouldn't happen
-                break;
+        if (cpq2) {
+            // CPQ2 (Magatia) monster pool
+            switch (num) {
+                case 1:  mid = 9300149; break; // Reinforced Iron Mutae
+                case 2:  mid = 9300150; break; // Hector
+                case 3:  mid = 9300151; break; // Security Camera
+                case 4:  mid = 9300152; break; // Stereo Mist
+                case 5:  mid = 9300153; break; // Soul Teddy
+                case 6:  mid = 9300154; break; // Homunculus
+                case 7:  mid = 9300155; break; // Void Mage
+                case 8:  mid = 9300156; break; // Reinforced Iron Mutae Chief
+                case 9:  mid = 9300157; break; // Roid
+                case 10: mid = 9300158; break; // King Block Golem
+                default: mid = 9300149; break;
+            }
+        } else {
+            // CPQ1 (Ludibrium) monster pool
+            switch (num) {
+                case 1:  mid = 9300127; break; // Brown Teddy
+                case 2:  mid = 9300128; break; // Bloctopus
+                case 3:  mid = 9300129; break; // Ratz
+                case 4:  mid = 9300130; break; // Chronos
+                case 5:  mid = 9300131; break; // Toy Trojan
+                case 6:  mid = 9300132; break; // Tick-Tock
+                case 7:  mid = 9300133; break; // Robo
+                case 8:  mid = 9300134; break; // King Bloctopus
+                case 9:  mid = 9300135; break; // Master Chronos
+                case 10: mid = 9300136; break; // Rombot
+                default: mid = 9300127; break;
+            }
         }
         return mid;
     }
