@@ -1,10 +1,10 @@
-# OriginalMS — Vanilla MapleStory v62 Emulator
+# OriginalMS - Vanilla MapleStory v62 Emulator
 
-A clean, complete **MapleStory v62** (GMS 2008-era) private server emulator. Ships all authentic v62 content — every party quest, boss system, class mechanic, and mini-game — with no custom or post-v62 additions. Runs as a fully containerized stack via **Docker Compose**; no local Java or Maven needed.
+A clean, complete **MapleStory v62** (GMS 2008-era) private server emulator. Ships all authentic v62 content - every party quest, boss system, class mechanic, and mini-game - with no custom or post-v62 additions. Runs as a fully containerized stack via **Docker Compose**; no local Java or Maven needed.
 
 > Based on the original [OdinMS](https://github.com/erikdesjardins/OdinMS) codebase by Patrick Huy, Matthias Butz, and Jan Christian Meyer. Originally a Brazilian Portuguese server project; rebuilt, translated to English, and Dockerized.
 
-> **No Docker?** Check out the [`classic` branch](../../tree/classic) — the pre-Docker edition that runs with a plain Java 8 JDK and shell scripts, closer to how OdinMS servers ran in 2008.
+> **No Docker?** Check out the [`classic` branch](../../tree/classic) - the pre-Docker edition that runs with a plain Java 8 JDK and shell scripts, closer to how OdinMS servers ran in 2008.
 
 ---
 
@@ -14,7 +14,7 @@ A clean, complete **MapleStory v62** (GMS 2008-era) private server emulator. Shi
 |---|---|
 | Docker + Docker Compose | Desktop or CLI engine |
 | MapleStory v62 Game Client | To connect |
-| v62 WZ XML files | Place in `./wz/` — not bundled (see below) |
+| v62 WZ XML files | Place in `./wz/` - not bundled (see below) |
 
 > **WZ files:** Due to copyright, game asset XMLs are not included. Extract them from a clean v62 installation and place them under `./wz/` (subdirectories: `Character.wz/`, `Item.wz/`, `Map.wz/`, `Mob.wz/`, `Npc.wz/`, `Reactor.wz/`, `Skill.wz/`, `String.wz/`, `TamingMob.wz/`).
 
@@ -50,7 +50,7 @@ All config lives under `configs/`:
 | `configs/opcodes/recvops.properties` | Client recv opcode → enum name mapping |
 | `configs/opcodes/sendops.properties` | Server send opcode → enum name mapping |
 
-Default rates are **1× (vanilla)** — `exp=1`, `meso=1`, `drop=1`.
+Default rates are **1× (vanilla)** - `exp=1`, `meso=1`, `drop=1`.
 
 ---
 
@@ -117,7 +117,7 @@ The Maker skill (`10001007` for Cygnus Knights, `20001007` for Aran) allows craf
 - Mounts, VIP Teleport Rocks, Maple TV, Silver Box, Gachapon
 
 ### World Rankings
-Computed automatically every **30 minutes** (configurable via `world.ranking.interval`) by the `RankingWorker`. Updates `rank`, `rankMove`, `jobRank`, and `jobRankMove` columns on the `characters` table — both overall and per job-class rankings.
+Computed automatically every **30 minutes** (configurable via `world.ranking.interval`) by the `RankingWorker`. Updates `rank`, `rankMove`, `jobRank`, and `jobRankMove` columns on the `characters` table - both overall and per job-class rankings.
 
 ---
 
@@ -178,7 +178,7 @@ BiosMS/
 ├── scripts/                JavaScript event/NPC/quest/portal/reactor scripts
 ├── configs/                Properties files (rates, ports, opcodes, world settings)
 ├── SQL/                    MySQL schema + seed data
-├── wz/                     WZ XML asset files (not bundled — add your own)
+├── wz/                     WZ XML asset files (not bundled - add your own)
 ├── Dockerfile              Multi-stage: maven:3.8.5-openjdk-8 → openjdk:8-jre-slim
 └── docker-compose.yml      DB + World + Login + Channel services
 ```

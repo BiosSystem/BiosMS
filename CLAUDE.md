@@ -1,4 +1,4 @@
-# OriginalMS — AI Context (CLAUDE.md)
+# OriginalMS - AI Context (CLAUDE.md)
 
 MapleStory v62 (GMS 2008-era) private server emulator. OdinMS lineage, translated from Brazilian Portuguese to English, Dockerized.
 
@@ -6,10 +6,10 @@ MapleStory v62 (GMS 2008-era) private server emulator. OdinMS lineage, translate
 
 | Branch | Based on | Purpose |
 |---|---|---|
-| `main` | full history (2020–2024) | Docker version — complete v62, all features |
-| `classic` | `c497ea3` (2022-08-20) | Pre-Docker — shell scripts + bare JDK, 10 commits |
+| `main` | full history (2020–2024) | Docker version - complete v62, all features |
+| `classic` | `c497ea3` (2022-08-20) | Pre-Docker - shell scripts + bare JDK, 10 commits |
 
-All new feature work goes on `main`. `classic` is a historical snapshot — do not add commits there unless fixing something specific to the non-Docker setup.
+All new feature work goes on `main`. `classic` is a historical snapshot - do not add commits there unless fixing something specific to the non-Docker setup.
 
 ---
 
@@ -18,10 +18,10 @@ All new feature work goes on `main`. `classic` is a historical snapshot — do n
 | Layer | Tech |
 |---|---|
 | Language | Java 8 |
-| Build | Maven 3.8.5 (inside Docker — no local JDK needed) |
+| Build | Maven 3.8.5 (inside Docker - no local JDK needed) |
 | Network | Apache MINA 2.0.9 |
-| Scripting | Rhino (JavaScript) — NPC/quest/event/portal/reactor |
-| DB | MySQL 5.7+ — Tomcat JDBC pool |
+| Scripting | Rhino (JavaScript) - NPC/quest/event/portal/reactor |
+| DB | MySQL 5.7+ - Tomcat JDBC pool |
 | Runtime | Docker Compose (db + world + login + channel) |
 
 ## How to run
@@ -38,7 +38,7 @@ DB auto-imports `SQL/BiosMS.sql` on first start. Login on port `8484`, channel o
 |---|---|
 | `src/net/channel/handler/` | Packet handlers (one class per opcode) |
 | `src/client/` | MapleCharacter, inventory, skills |
-| `src/server/` | Game logic — maps, monsters, items, events |
+| `src/server/` | Game logic - maps, monsters, items, events |
 | `src/scripting/` | JS engine wrappers |
 | `scripts/event/` | Event scripts (PQ flow, bosses, dojo) |
 | `scripts/npc/` | NPC dialogue scripts |
@@ -56,12 +56,12 @@ New handler: add to enum → add to properties file → register in PacketProces
 
 Event scripts are JS files in `scripts/event/`. The Java side exposes:
 
-- `em` — `EventManager` (schedule, properties, channel server)
-- `eim` — `EventInstanceManager` (players, maps, timers, `saveDojoRecord()`)
-- `MaplePacketCreator` — send packets
-- `MapleInventoryManipulator` — add/remove items
+- `em` - `EventManager` (schedule, properties, channel server)
+- `eim` - `EventInstanceManager` (players, maps, timers, `saveDojoRecord()`)
+- `MaplePacketCreator` - send packets
+- `MapleInventoryManipulator` - add/remove items
 
-## Completed features (v62 vanilla — nothing missing)
+## Completed features (v62 vanilla - nothing missing)
 
 - All 52 job classes including Cygnus Knights and Aran
 - All PQs: HenesysPQ, KerningPQ, LudiPQ, LudiMazePQ, OrbisPQ, AriantPQ×3, AmoriaPQ, AquariumPQ, PiratePQ, HontalePQ, ZakumPQ, GuildQuest, ElnathPQ, OmegaPQ, CrimsonwoodPQ, MuLungDojo
@@ -72,10 +72,10 @@ Event scripts are JS files in `scripts/event/`. The Java side exposes:
 - Maker Skill (opcode 0x9B; `maker_recipe` + `maker_recipe_ingredients` DB tables)
 - Mu Lung Dojo (36 floors; `dojorecord` DB table; `eim.saveDojoRecord()`)
 - CWKPQ (CrimsonwoodPQ.js; MapleSquadType.CWKPQ)
-- World Rankings (RankingWorker — every 30 min)
+- World Rankings (RankingWorker - every 30 min)
 - Pets, Mounts, Silver Box, Maple TV, Duey, VIP rocks
 
-## Out of scope (post-v62 — do NOT add)
+## Out of scope (post-v62 - do NOT add)
 
 - Potential / Bonus Stats
 - Star Force / Spell Traces
@@ -85,7 +85,7 @@ Event scripts are JS files in `scripts/event/`. The Java side exposes:
 ## Commit rules
 
 - Author: `BiosSystem` / `63607038+BiosSystem@users.noreply.github.com`
-- No `feat:` / `fix:` / `chore:` prefixes — plain imperative (`Add X`, `Fix Y in Z`)
+- No `feat:` / `fix:` / `chore:` prefixes - plain imperative (`Add X`, `Fix Y in Z`)
 - No AI signatures, no "Co-Authored-By" trailers
 - Spread dates: use GIT_AUTHOR_DATE/GIT_COMMITTER_DATE env vars to simulate realistic history (2–10 week gaps, +03:00 TZ)
 - Spreading tool: `D:\Antigravity_Projects\spread_commits_human.py`

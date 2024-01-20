@@ -2,9 +2,9 @@
 
 BiosMS is derived from **OdinMS**, the original open-source MapleStory server emulator.
 
-## OdinMS — Original Authors
+## OdinMS - Original Authors
 
-- **Patrick Huy** (`patrick.huy@frz.cc`) — lead developer
+- **Patrick Huy** (`patrick.huy@frz.cc`) - lead developer
 - **Matthias Butz** (`matze@odinms.de`)
 - **Jan Christian Meyer** (`vimes@odinms.de`)
 
