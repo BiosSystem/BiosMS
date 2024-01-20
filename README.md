@@ -1,8 +1,10 @@
-# BiosMS — Vanilla MapleStory v62 Emulator
+# OriginalMS — Vanilla MapleStory v62 Emulator
 
-A clean, complete **MapleStory v62** (GMS 2008-era) private server emulator. BiosMS ships all authentic v62 content — every party quest, boss system, class mechanic, and mini-game — with no custom or post-v62 additions. Runs as a fully containerized stack via **Docker Compose**; no local Java or Maven needed.
+A clean, complete **MapleStory v62** (GMS 2008-era) private server emulator. Ships all authentic v62 content — every party quest, boss system, class mechanic, and mini-game — with no custom or post-v62 additions. Runs as a fully containerized stack via **Docker Compose**; no local Java or Maven needed.
 
 > Based on the original [OdinMS](https://github.com/erikdesjardins/OdinMS) codebase by Patrick Huy, Matthias Butz, and Jan Christian Meyer. Originally a Brazilian Portuguese server project; rebuilt, translated to English, and Dockerized.
+
+> **No Docker?** Check out the [`classic` branch](../../tree/classic) — the pre-Docker edition that runs with a plain Java 8 JDK and shell scripts, closer to how OdinMS servers ran in 2008.
 
 ---
 

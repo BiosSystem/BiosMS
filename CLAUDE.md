@@ -1,6 +1,15 @@
-# BiosMS — AI Context (CLAUDE.md)
+# OriginalMS — AI Context (CLAUDE.md)
 
 MapleStory v62 (GMS 2008-era) private server emulator. OdinMS lineage, translated from Brazilian Portuguese to English, Dockerized.
+
+## Branch structure
+
+| Branch | Based on | Purpose |
+|---|---|---|
+| `main` | full history (2020–2024) | Docker version — complete v62, all features |
+| `classic` | `c497ea3` (2022-08-20) | Pre-Docker — shell scripts + bare JDK, 10 commits |
+
+All new feature work goes on `main`. `classic` is a historical snapshot — do not add commits there unless fixing something specific to the non-Docker setup.
 
 ---
 
